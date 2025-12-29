@@ -13,6 +13,7 @@ int main(int argc, char *argv[]) {
   // std::cout << "这是打印的，不是回显，" << static_cast<int>(getcharInstant())
   //           << "喵喵喵" << "\n";
   scene.setKeyMap(KeyMode::WASD);
+  scene.randomErase(20);
   scene.play();
   return 0;
 }

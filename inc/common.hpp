@@ -78,6 +78,13 @@ inline std::vector<int> getShuffleUnit() {
   return un;
 }
 
+inline int getRandomNumber(int begin, int end) {
+  std::random_device rd; // 生成种子的设备
+  std::mt19937 mt(rd()); // rd()生成一个种子，mt(种子)构造一个随机数生成引擎
+  std::uniform_int_distribution<int> dist(begin, end);
+  return dist(mt);
+}
+
 // 无行缓冲，无回显，传递原始字符
 inline char getcharInstant() {
   termios t_attr, t_attr_raw;

@@ -90,6 +90,18 @@ public:
     return cur_grid.value;
   }
 
+  void randomErase(int n) {
+    std::vector<int> pool(81);
+    for (int i = 0; i < 81; ++i) {
+      pool[i] = i;
+    }
+    for (int i = 0; i < n; ++i) {
+      int r = getRandomNumber(0, pool.size() - 1);
+      grids[pool.at(r)] = GridData(UNSELECTED, GridState::ERASED);
+      pool.erase(pool.begin() + r); // 会往前递补
+    }
+  }
+
   void printAll() {
     system("clear");
     printCorneAndLine(-1);
@@ -117,17 +129,16 @@ public:
     printAll();
     while (1) {
       char key = getcharInstant();
+      std::cout << ":key = " << static_cast<int>(key) << "\n";
       if (key >= '0' && key <= '9') {
         Operate operate{this};
         if (!operate.execute(key - '0')) {
           std::cerr << "can't be modified! " << "\n";
         } else {
           operate_vec.push_back(operate);
+          printAll();
         }
-        printAll();
-        continue;
-      }
-      if (key == key_map->ESC) {
+      } else if (key == key_map->ESC) {
         std::cout << "leave this game ?" << "\n";
         std::string in_str{};
         std::cin >> in_str;
@@ -135,10 +146,9 @@ public:
           // exit(0);
           break;
         } else if (in_str[0] == 'n' || in_str[0] == 'N') {
-          continue;
+          printAll();
         }
-      }
-      if (key == key_map->U) {
+      } else if (key == key_map->U) {
         if (operate_vec.size() == 0) {
           std::cerr << "can't undo !" << "\n";
         } else {
@@ -146,40 +156,29 @@ public:
           cur_operate.undo();
           operate_vec.pop_back();
           printAll();
-          continue;
         }
-      }
-      if (key == key_map->LEFT) {
+      } else if (key == key_map->LEFT) {
         cur_cursor_pos.x =
             (cur_cursor_pos.x - 1) > 0 ? (cur_cursor_pos.x - 1) : 0;
         printAll();
-        continue;
-      }
-      if (key == key_map->RIGHT) {
+      } else if (key == key_map->RIGHT) {
         cur_cursor_pos.x =
             (cur_cursor_pos.x + 1) < 8 ? (cur_cursor_pos.x + 1) : 8;
         printAll();
-        continue;
-      }
-      if (key == key_map->UP) {
+      } else if (key == key_map->UP) {
         cur_cursor_pos.y =
             (cur_cursor_pos.y - 1) > 0 ? (cur_cursor_pos.y - 1) : 0;
         printAll();
-        continue;
-      }
-      if (key == key_map->DOWN) {
+      } else if (key == key_map->DOWN) {
         cur_cursor_pos.y =
             (cur_cursor_pos.y + 1) < 8 ? (cur_cursor_pos.y + 1) : 8;
         printAll();
-        continue;
-      }
-      if (key == key_map->ENTER) {
+      } else if (key == key_map->ENTER) {
         if (isGenerateOrPlayComplete()) {
           std::cout << "Win !" << "\n";
           break;
         } else {
           std::cout << "Continue !" << "\n";
-          continue;
         }
       }
     }
