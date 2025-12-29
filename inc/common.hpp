@@ -21,7 +21,7 @@ enum class KeyMode : int {
 };
 
 struct KeyMap {
-  static constexpr char ESC{0x18}; // 修饰成员变量，脱离类的实例，属于类本身
+  static constexpr char ESC{0x1B}; // 修饰成员变量，脱离类的实例，属于类本身
   static constexpr char U{0x75};
   static constexpr char ENTER{0x0D};
   char UP{};

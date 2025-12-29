@@ -1,3 +1,3 @@
-/home/zgh/CPPLearning/mysudoku/build/CMakeFiles/mysudoku.dir
-/home/zgh/CPPLearning/mysudoku/build/CMakeFiles/edit_cache.dir
-/home/zgh/CPPLearning/mysudoku/build/CMakeFiles/rebuild_cache.dir
+/home/zgh/CPP_Projects/mysudoku/build/CMakeFiles/mysudoku.dir
+/home/zgh/CPP_Projects/mysudoku/build/CMakeFiles/edit_cache.dir
+/home/zgh/CPP_Projects/mysudoku/build/CMakeFiles/rebuild_cache.dir

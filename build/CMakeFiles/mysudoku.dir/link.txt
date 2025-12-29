@@ -1,1 +1,1 @@
-/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/mysudoku.dir/link.d CMakeFiles/mysudoku.dir/src/main.cpp.o -o mysudoku
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/mysudoku.dir/link.d CMakeFiles/mysudoku.dir/src/main.cpp.o CMakeFiles/mysudoku.dir/src/operate.cpp.o -o mysudoku

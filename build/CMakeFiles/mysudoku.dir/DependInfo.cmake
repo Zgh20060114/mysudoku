@@ -8,7 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/zgh/CPPLearning/mysudoku/src/main.cpp" "CMakeFiles/mysudoku.dir/src/main.cpp.o" "gcc" "CMakeFiles/mysudoku.dir/src/main.cpp.o.d"
+  "/home/zgh/CPP_Projects/mysudoku/src/main.cpp" "CMakeFiles/mysudoku.dir/src/main.cpp.o" "gcc" "CMakeFiles/mysudoku.dir/src/main.cpp.o.d"
+  "/home/zgh/CPP_Projects/mysudoku/src/operate.cpp" "CMakeFiles/mysudoku.dir/src/operate.cpp.o" "gcc" "CMakeFiles/mysudoku.dir/src/operate.cpp.o.d"
   "" "mysudoku" "gcc" "CMakeFiles/mysudoku.dir/link.d"
   )
 

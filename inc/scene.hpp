@@ -25,7 +25,7 @@ private:
   std::unique_ptr<KeyMap> key_map{};
   std::vector<Operate> operate_vec{};
 
-  bool isGenerateComplete() {
+  bool isGenerateOrPlayComplete() {
     for (auto &block : column_blocks) {
       if (!block.isFull() || !block.isValid()) {
         return false;
@@ -129,7 +129,58 @@ public:
       }
       if (key == key_map->ESC) {
         std::cout << "leave this game ?" << "\n";
-        std::
+        std::string in_str{};
+        std::cin >> in_str;
+        if (in_str[0] == 'y' || in_str[0] == 'Y') {
+          // exit(0);
+          break;
+        } else if (in_str[0] == 'n' || in_str[0] == 'N') {
+          continue;
+        }
+      }
+      if (key == key_map->U) {
+        if (operate_vec.size() == 0) {
+          std::cerr << "can't undo !" << "\n";
+        } else {
+          auto &cur_operate = operate_vec.back();
+          cur_operate.undo();
+          operate_vec.pop_back();
+          printAll();
+          continue;
+        }
+      }
+      if (key == key_map->LEFT) {
+        cur_cursor_pos.x =
+            (cur_cursor_pos.x - 1) > 0 ? (cur_cursor_pos.x - 1) : 0;
+        printAll();
+        continue;
+      }
+      if (key == key_map->RIGHT) {
+        cur_cursor_pos.x =
+            (cur_cursor_pos.x + 1) < 8 ? (cur_cursor_pos.x + 1) : 8;
+        printAll();
+        continue;
+      }
+      if (key == key_map->UP) {
+        cur_cursor_pos.y =
+            (cur_cursor_pos.y - 1) > 0 ? (cur_cursor_pos.y - 1) : 0;
+        printAll();
+        continue;
+      }
+      if (key == key_map->DOWN) {
+        cur_cursor_pos.y =
+            (cur_cursor_pos.y + 1) < 8 ? (cur_cursor_pos.y + 1) : 8;
+        printAll();
+        continue;
+      }
+      if (key == key_map->ENTER) {
+        if (isGenerateOrPlayComplete()) {
+          std::cout << "Win !" << "\n";
+          break;
+        } else {
+          std::cout << "Continue !" << "\n";
+          continue;
+        }
       }
     }
   }
@@ -270,6 +321,6 @@ public:
       std::cout << "\n";
     }
 
-    assert(isGenerateComplete());
+    assert(isGenerateOrPlayComplete());
   }
 };
